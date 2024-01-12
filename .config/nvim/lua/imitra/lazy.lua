@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({ { import = "imitra.plugins" },
-    -- { import = "imitra.plugins.lsp" }
+    { import = "imitra.plugins.lsp" }
 }, {
   install = {
     colorscheme = { "nightfly" },
