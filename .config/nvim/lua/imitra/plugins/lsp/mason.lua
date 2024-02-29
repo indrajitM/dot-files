@@ -2,7 +2,7 @@ return {
   "williamboman/mason.nvim",
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
-    -- "WhoIsSethDaniel/mason-tool-installer.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
   },
   config = function()
     -- import mason
@@ -50,7 +50,7 @@ return {
     --     "isort", -- python formatter
     --     "black", -- python formatter
     --     "pylint", -- python linter
-    --     "eslint_d", -- js linter
+    --     -- "eslint_d", -- js linter
     --   },
     -- })
   end,
