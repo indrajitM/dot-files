@@ -6,4 +6,6 @@ return {
   "inkarkat/vim-ReplaceWithRegister", -- replace with register contents using motion (gr + motion)
 
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+
+  "github/copilot.vim",
 }
