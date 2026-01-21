@@ -41,6 +41,8 @@ return {
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
+			-- Disable automatic_enable since we're using vim.lsp.enable() manually
+			automatic_enable = false,
 		})
 
 		mason_tool_installer.setup({

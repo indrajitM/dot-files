@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.16.0/.schema/devbox.schema.json",
+  "env": {
+    "PROJECT_NAME": "Cyperf",
+    "HISTFILE": "$PWD/.devbox/shell_history",
+    "HISTSIZE": "10000",
+    "SAVEHIST": "10000"
+  },
+  "packages": [
+    "neovim@0.11.5",
+    "nodejs@24.11.1",
+    "ripgrep@latest",
+    "lazygit@latest",
+    "zellij@latest",
+    "tmux@latest",
+    "p4@latest",
+    "git@2.52.0",
+    "tldr@latest",
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to devbox Indrajit!' > /dev/null"
+    ],
+    "scripts": {
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ]
+    }
+  }
+}
