@@ -16,6 +16,9 @@
     "p4@latest",
     "git@2.52.0",
     "tldr@latest",
+    "fd@latest",
+    "btop@latest",
+    "bat@latest",
   ],
   "shell": {
     "init_hook": [

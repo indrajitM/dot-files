@@ -5,13 +5,15 @@ opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
 
 -- tabs & indentation
-opt.tabstop = 4 -- 4 spaces for tabs (prettier default)
+opt.tabstop = 4 -- 4 spaces for tabs
+opt.softtabstop = 4 -- 4 spaces for Tab in insert mode
 opt.shiftwidth = 4 -- 4 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 -- line wrapping
 opt.wrap = false -- disable line wrapping
+opt.breakindent = true -- preserve indentation on wrapped lines
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
@@ -41,20 +43,39 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
+-- faster CursorHold events (default 4000ms)
+opt.updatetime = 250
+
 -- Save undo history
-vim.opt.undofile = true
+opt.undofile = true
 
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.list = true
+opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+opt.inccommand = 'split'
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+opt.scrolloff = 10
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
+opt.hlsearch = true
+
+-- Suppress position_encoding warnings for Neovim 0.11+
+-- This patches make_position_params to use the first client's offset_encoding by default
+local original_make_position_params = vim.lsp.util.make_position_params
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.util.make_position_params = function(window, offset_encoding)
+  window = window or 0
+  if not offset_encoding then
+    local buf = vim.api.nvim_win_get_buf(window)
+    local clients = vim.lsp.get_clients({ bufnr = buf })
+    if clients and #clients > 0 then
+      offset_encoding = clients[1].offset_encoding
+    end
+  end
+  return original_make_position_params(window, offset_encoding)
+end
